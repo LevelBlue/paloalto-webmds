@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #f0f6ff;
+    color: #002244;
+    margin: 0;
+    padding: 10px;
+    font-size: 12px;
+  }
+  .container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 10px;
+    align-items: flex-start;
+  }
+  .form-section {
+    width: 63%;
+  }
+  .escalation-section {
+    width: 35%;
+    background-color: #e8f1ff;
+    border: 1px solid #004080;
+    padding: 8px;
+    box-sizing: border-box;
+  }
+  .escalation-section table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11px;
+    background-color: #ffffff;
+  }
+  .escalation-section th {
+    background-color: #004080;
+    color: white;
+    padding: 5px;
+    border: 1px solid #000;
+  }
+  .escalation-section td {
+    border: 1px solid #000;
+    padding: 6px;
+    vertical-align: top;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #ffffff;
+  }
+  th {
+    background-color: #004080;
+    color: white;
+    font-size: 13px;
+  }
+  td {
+    border: 1px solid #cccccc;
+    padding: 4px;
+    vertical-align: top;
+  }
+  select, textarea, input[type="textbox"], input[type="email"] {
+    width: 100%;
+    padding: 2px;
+    font-size: 11px;
+    box-sizing: border-box;
+  }
+  input[type="button"], input[type="reset"] {
+    background-color: #004080;
+    color: white;
+    padding: 4px 10px;
+    font-size: 11px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  input[type="button"]:hover, input[type="reset"]:hover {
+    background-color: #0059b3;
+  }
+  .esc-main-header {
+    background: #000000 !important;
+    color: #ffffff !important;
+    text-align: center;
+    font-size: 13px;
+    font-weight: normal;
+  }
+  .esc-sub-header {
+    background: #1796c4 !important;
+    color: #ffffff !important;
+    text-align: center;
+    font-size: 12px;
+  }
+  .esc-title-cell {
+    width: 34%;
+    text-align: center;
+    font-size: 11px;
+  }
+  .esc-contact-cell {
+    width: 33%;
+    text-align: center;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .esc-turn-cell {
+    width: 33%;
+    text-align: center;
+    font-size: 11px;
+  }
+</style>
+</head>
+
+<body>
+<div class="header-logo" style="text-align: center; margin-bottom: 10px;">
+  <img alt="LevelBlue Logo" src="LB.png" style="height: 40px;"/>
+</div>
+
+<div class="container">
+  <div class="form-section">
+    <form id="mdsform">
+      <table border="1">
+        <tbody>
+          <tr>
+            <th colspan="2">Palo Alto Web MDS</th>
+          </tr>
+
+          <!-- Customer Information -->
+          <tr>
+            <td>
+              <table>
+                <tbody>
+                  <tr>
+                    <th colspan="2">
+                      <span style="text-decoration: underline;">Customer Information</span><pre>		</pre>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td><div>Customer Name</div></td>
+                    <td><input autofocus="" name="customer_name" maxlength="100" type="textbox" /></td>
+                  </tr>
+                  <tr>
+                    <td><div>Customer Email</div></td>
+                    <td><input name="customer_email" type="email" /></td>
+                  </tr>
+                  <tr>
+                    <td><div>Customer Phone (+Country Code - #)</div></td>
+                    <td><input name="customer_phone" type="textbox" /></td>
+                  </tr>
+                  <tr>
+                    <td><div>Customer Internal Ticket No.</div></td>
+                    <td><input name="ticketnum" type="textbox" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+
+            <!-- Affected User Information -->
+            <td>
+              <table>
+                <tbody>
+                  <tr>
+                    <th colspan="2">
+                      <span style="text-decoration: underline;">Affected User / Site Information</span>
+                    </th>
+                  </tr>
+                  <tr>
+                    <td><div>Name of user</div></td>
+                    <td><input name="user_name" maxlength="100" type="textbox" /></td>
+                  </tr>
+                  <tr>
+                    <td><div>Email of user</div></td>
+                    <td><input name="user_email" type="email" /></td>
+                  </tr>
+                  <tr>
+                    <td><div>Phone (+Country Code - #)</div></td>
+                    <td><input name="user_phone" type="textbox" /></td>
+                  </tr>
+                  <tr>
+                    <td><div>Location / Site Name</div></td>
+                    <td><input name="location_name" type="textbox" /></td>
+                  </tr>
+                  <tr>
+                    <td><div>Source IP (Site / User)</div></td>
+                    <td><input name="source_ip_site" type="textbox" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Palo Alto Questionnaire -->
+          <tr>
+            <td colspan="2">
+              <table>
+                <tbody>
+                  <tr>
+                    <th colspan="2">
+                      Palo Alto Offers Troubleshooting Questionnaire
+                    </th>
+                  </tr>
+
+                  <tr>
+                    <td><div>1. Offer Type (Firewall / SSE-Prisma / SASE - SDWAN)</div></td>
+                    <td><input name="q1_offer_type" type="textbox" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>2. Type of connectivity that has issues – SDWAN Branch / SDWAN Hub / Service Connection / Remote Networks / Mobile Users</div></td>
+                    <td><input name="q2_connectivity_type" type="textbox" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>3. If it is SDWAN location, provide Site name and ION details</div></td>
+                    <td><textarea name="q3_sdwan_site_details" rows="2"></textarea></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>4. Is the issue with one location or multiple locations?</div></td>
+                    <td><input name="q4_locations_scope" type="textbox" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>5. Source IP address (SIP) from where you are testing</div></td>
+                    <td><input name="q5_source_ip" type="textbox" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>6. Destination IP address (DIP) where you are trying to reach</div></td>
+                    <td><input name="q6_destination_ip" type="textbox" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>7. Protocol and/or port</div></td>
+                    <td><input name="q7_protocol_port" type="textbox" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>8. Traceroutes / latency details (Traceroute to Google DNS – 8.8.8.8, results, etc.)</div></td>
+                    <td><textarea name="q8_traceroute_latency" rows="4"></textarea></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>9. Error message, if any (from end user)</div></td>
+                    <td><textarea name="q9_error_message" rows="2"></textarea></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>10. Brief description of the issue</div></td>
+                    <td><textarea name="q10_issue_description" rows="4"></textarea></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>11. If this is a URL, please provide the URL</div></td>
+                    <td><input name="q11_url" type="textbox" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>12. Has this worked before? If yes, when did it stop working?</div></td>
+                    <td><textarea name="q12_worked_before" rows="2"></textarea></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>13. Approximate number of users experiencing the problem</div></td>
+                    <td><input name="q13_user_count" type="textbox" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>14. Were there any recent changes on the firewall? (MACD, policy, objects, routes, upgrades, etc.)</div></td>
+                    <td><textarea name="q14_recent_changes" rows="3"></textarea></td>
+                  </tr>
+
+                  <tr>
+                    <td><div>15. What troubleshooting steps have already been taken?</div></td>
+                    <td><textarea name="q15_troubleshooting_done" rows="4"></textarea></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </td>
+          </tr>
+
+          <!-- Buttons -->
+          <tr>
+            <td align="right">
+              <input id="reset" type="reset" value="Reset" />
+            </td>
+            <td>
+              <input id="ctc" onclick="copytext()" type="button" value="Copy to Clipboard" />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </form>
+  </div>
+
+  <!-- Escalation Section -->
+  <div class="escalation-section">
+    <b style="color:#002244;">Escalate when ticket is not being updated on time</b><br><br>
+
+    <table>
+      <tr>
+        <th colspan="3" class="esc-main-header">Escalation/Notification Table</th>
+      </tr>
+      <tr>
+        <th class="esc-sub-header">Title</th>
+        <th class="esc-sub-header">Contact</th>
+        <th class="esc-sub-header">Escalation Turn-Around</th>
+      </tr>
+
+      <tr>
+        <td class="esc-title-cell">LevelBlue Cybersecurity Ops</td>
+        <td class="esc-contact-cell" rowspan="4">
+          <b>US:</b><br>
+          +1 888 604 1399 – option 1<br>
+          <b>Additional Options</b><br>
+          1 – Firewall Support<br>
+          2 – DDoS<br>
+          3 – IDS/IPS<br>
+          4 – Active Content Distribution<br>
+          5 – MWaap/WebAPI<br><br>
+
+          <b>EMEA:</b><br>
+          +44 (20) 46217600 – option 1<br><br>
+
+          <b>APAC:</b><br>
+          +61 (2) 40869340 – option 1
+        </td>
+        <td class="esc-turn-cell">Immediate</td>
+      </tr>
+
+      <tr>
+        <td class="esc-title-cell">LevelBlue Cybersecurity Shift Lead or Ops Manager</td>
+        <td class="esc-turn-cell">30 Minutes</td>
+      </tr>
+
+      <tr>
+        <td class="esc-title-cell">LevelBlue Cybersecurity Director</td>
+        <td class="esc-turn-cell">3 hours</td>
+      </tr>
+
+      <tr>
+        <td class="esc-title-cell">LevelBlue Cybersecurity AVP</td>
+        <td class="esc-turn-cell">4 hours</td>
+      </tr>
+    </table>
+
+    <div style="margin-top: 20px;">
+      <b style="color: #002244;">Directions to Use the Palo Alto Web MDS Form:</b>
+      <ul>
+        <li><b>Start with Customer Details:</b> Enter your name, email, and contact number under the Customer Information section.</li>
+        <li><b>Provide Affected User / Site Details:</b> Fill in the impacted user or site information including name, email, contact, location, and source IP.</li>
+        <li><b>Complete the Troubleshooting Questionnaire:</b> Answer all 15 questions related to offer type, connectivity type, SDWAN details if applicable, IPs, traceroutes, errors, and recent changes.</li>
+        <li><b>Describe the Issue Clearly:</b> Include when it last worked, number of users affected, and troubleshooting already performed.</li>
+        <li><b>Copy to Clipboard:</b> Once the form is filled out, click on the "Copy to Clipboard" button to copy all your responses into plain text and paste into the ticket.</li>
+        <li><b>Attach Evidence Separately:</b> Traceroute outputs, screenshots, and logs should be attached directly in the support ticket.</li>
+        <li><b>Reset Option:</b> Use the "Reset" button if you want to clear the form and start over.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+function copytext() {
+  let txt = "";
+
+  const rows = document.querySelectorAll("#mdsform tr");
+  rows.forEach(row => {
+    const labelDiv = row.querySelector("td > div");
+    const input = row.querySelector("input, textarea, select");
+    if (labelDiv && input) {
+      const label = (labelDiv.innerText || "").trim();
+      let value = (input.value || "").trim();
+      txt += label + ": " + value + "\n";
+    }
+  });
+
+  const fallback = () => {
+    const ta = document.createElement("textarea");
+    ta.value = txt;
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand("copy");
+    document.body.removeChild(ta);
+    alert("Copied to clipboard!");
+  };
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(txt).then(() => {
+      alert("Copied to clipboard!");
+    }).catch(fallback);
+  } else {
+    fallback();
+  }
+}
+</script>
+
+</body>
+</html>
